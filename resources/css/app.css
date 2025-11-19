@@ -9,3 +9,41 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer utilities {
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .animate-in {
+        animation: slideInUp 0.8s ease-out forwards;
+    }
+
+    .animate-in[style*="animation-delay"] {
+        animation: slideInUp 0.8s ease-out forwards var(--animation-delay, 0s);
+    }
+
+    /* Support animation-delay inline style */
+    .animate-in {
+        animation-delay: inherit;
+    }
+
+    /* Disable animations for nav */
+    nav {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
