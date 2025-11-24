@@ -22,6 +22,15 @@
         }
     }
 
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
     .scroll-animate {
         opacity: 0;
         transform: translateY(30px);
@@ -45,5 +54,22 @@
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
+    }
+
+    /* Carousel Styles */
+    .carousel-wrapper {
+        overflow: hidden;
+    }
+
+    .carousel-track {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-item:hover {
+        transform: scale(1.05);
     }
 }

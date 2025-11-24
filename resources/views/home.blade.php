@@ -64,6 +64,98 @@
     </div>
 </div>
 
+<!-- Partner Restoran Carousel -->
+<div class="mb-12">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate" data-scroll-animate>Restoran Terkemuka Mempercayai Kami</h2>
+        <p class="text-gray-600 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">Dipilih oleh restoran dan hotel ternama di seluruh Indonesia</p>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="relative rounded-lg p-12 overflow-hidden">
+        <div class="carousel-wrapper overflow-hidden rounded-lg">
+            <div class="carousel-track flex gap-12" id="logoCarousel">
+                <!-- Logo 1 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Logo 2 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Logo 3 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Logo 4 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Logo 5 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+                <!-- Logo 6 -->
+                <div class="carousel-item flex-shrink-0 w-48 h-48 rounded-lg flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 120px; width: auto; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 bg-primary text-white p-3 rounded-full hover:bg-primary/90 transition-colors z-10" onclick="pauseAutoScroll()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+        <button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 bg-primary text-white p-3 rounded-full hover:bg-primary/90 transition-colors z-10" onclick="pauseAutoScroll()">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    const carousel = document.getElementById('logoCarousel');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const itemWidth = 192; // w-48 = 192px
+    const gap = 48; // gap-12 = 48px
+    const itemWithGap = itemWidth + gap; // 240px
+    const totalItems = items.length;
+    let isAnimating = false;
+    let isPaused = false;
+
+    // Clone items for infinite loop
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        carousel.appendChild(clone);
+    });
+
+    let currentPosition = 0;
+    let scrollSpeed = 0.5; // pixels per frame (diperlambat)
+
+    function animate() {
+        if (!isPaused) {
+            currentPosition -= scrollSpeed;
+            carousel.style.transform = `translateX(${currentPosition}px)`;
+
+            // Reset position untuk infinite loop
+            if (Math.abs(currentPosition) >= itemWithGap * totalItems) {
+                currentPosition = 0;
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    function pauseAutoScroll() {
+        isPaused = !isPaused;
+    }
+
+    // Start animation
+    animate();
+</script>
+
 <!-- Tentang Kami -->
 <div id="tentang" class="bg-white rounded-lg shadow-md p-8 md:p-12 mb-12 scroll-animate" data-scroll-animate>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -79,80 +171,77 @@
                 Kepercayaan pelanggan adalah prioritas utama kami. Kami berkomitmen untuk terus berinovasi dan memberikan layanan terbaik.
             </p>
         </div>
-        <div class="bg-gradient-to-br from-amber-100 to-amber-50 rounded-lg p-8 flex items-center justify-center h-64">
-            <div class="text-6xl">🌾</div>
+        <div class=" from-amber-100 to-amber-50 rounded-l-lg pl-8 flex items-center justify-center h-64 max-h-80">
+            <img src="{{ asset('images/gambar-sementara.jpg') }}" alt="Toko Beras Berkah" style="height: 100%; width: 100%; object-fit: cover; border-radius: 0rem;">
         </div>
     </div>
 </div>
 
-<!-- Testimoni -->
-<div class="mb-12">
-    <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate" data-scroll-animate>Kepuasan Pelanggan</h2>
-        <p class="text-gray-600 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">Apa kata pelanggan kami</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.2s;">
-            <div class="flex items-center mb-3">
-                <span class="text-yellow-400">★★★★★</span>
-            </div>
-            <p class="text-gray-700 mb-4">"Beras yang saya beli sangat berkualitas dan harganya terjangkau. Pelayanan juga sangat baik!"</p>
-            <p class="font-semibold text-gray-800">- Ibu Siti</p>
-            <p class="text-sm text-gray-500">Jakarta</p>
+    <!-- Belanja di Marketplace -->
+    <div class="mb-16 bg-gradient-to-r from-red-50 to-green-50 rounded-lg p-12">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate" data-scroll-animate>Belanja Sekarang</h2>
+            <p class="text-gray-600 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">Pilih marketplace favorit Anda untuk berbelanja produk Toko Beras Berkah</p>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.3s;">
-            <div class="flex items-center mb-3">
-                <span class="text-yellow-400">★★★★★</span>
-            </div>
-            <p class="text-gray-700 mb-4">"Pengiriman cepat dan produk sampai dengan aman. Pasti pesan lagi di sini!"</p>
-            <p class="font-semibold text-gray-800">- Pak Budi</p>
-            <p class="text-sm text-gray-500">Surabaya</p>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <!-- Shopee Card -->
+            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate" data-scroll-animate>
+                <div class="mb-6 flex justify-center">
+                    <img src="{{ asset('images/logo-shopee.png') }}" alt="Shopee" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
+                </div>
+                <p class="text-gray-600 mb-6">Belanja mudah dengan berbagai pilihan pembayaran dan pengiriman cepat</p>
+                <div class="bg-red-500 text-white py-3 rounded-lg font-bold group-hover:bg-red-600 transition-colors">
+                    Buka Shopee →
+                </div>
+            </a>
 
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.4s;">
-            <div class="flex items-center mb-3">
-                <span class="text-yellow-400">★★★★★</span>
-            </div>
-            <p class="text-gray-700 mb-4">"Beras premium dengan harga yang sangat kompetitif. Recommend untuk semua orang!"</p>
-            <p class="font-semibold text-gray-800">- Mba Rina</p>
-            <p class="text-sm text-gray-500">Bandung</p>
+            <!-- Tokopedia Card -->
+            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">
+                <div class="mb-6 flex justify-center">
+                    <img src="{{ asset('images/logo-tokopedia.png') }}" alt="Tokopedia" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
+                </div>
+                <p class="text-gray-600 mb-6">Belanja terpercaya dengan perlindungan pembeli dan gratis ongkir</p>
+                <div class="bg-green-600 text-white py-3 rounded-lg font-bold group-hover:bg-green-700 transition-colors">
+                    Buka Tokopedia →
+                </div>
+            </a>
         </div>
     </div>
-</div>
 
-<!-- FAQ -->
-<div class="mb-12">
-    <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate" data-scroll-animate>Pertanyaan Umum</h2>
-        <p class="text-gray-600 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">Jawaban untuk pertanyaan Anda</p>
-    </div>
-
-    <div class="max-w-2xl mx-auto space-y-4">
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.2s;">
-            <h3 class="font-bold text-gray-800 mb-2">Berapa lama waktu pengiriman?</h3>
-            <p class="text-gray-700">Pengiriman kami membutuhkan waktu 1-3 hari kerja tergantung lokasi Anda. Ongkos kirim gratis untuk pembelian apapun.</p>
+    <!-- Visi & Misi -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- Visi -->
+        <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg shadow-md p-8 scroll-animate" data-scroll-animate>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                Visi Kami
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+                Menjadi penyedia beras terpercaya dan terdepan di Indonesia dengan menyediakan produk berkualitas premium yang terjangkau untuk setiap keluarga Indonesia, serta mendukung kesejahteraan petani lokal.
+            </p>
         </div>
 
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.3s;">
-            <h3 class="font-bold text-gray-800 mb-2">Apakah ada jaminan kualitas?</h3>
-            <p class="text-gray-700">Ya, semua produk kami memiliki garansi kualitas. Jika ada masalah, hubungi kami dan kami akan menggantinya tanpa biaya tambahan.</p>
+        <!-- Misi -->
+        <div class="bg-gradient-to-br from-accent/10 to-accent/5 rounded-lg shadow-md p-8 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                Misi Kami
+            </h3>
+            <ul class="text-gray-700 space-y-2">
+                <li class="flex items-start gap-2">
+                    <span class="text-primary font-bold">•</span>
+                    <span>Menyediakan beras berkualitas dengan harga yang kompetitif</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-primary font-bold">•</span>
+                    <span>Memberikan layanan terbaik kepada setiap pelanggan</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-primary font-bold">•</span>
+                    <span>Mendukung ekonomi lokal melalui kerjasama dengan petani</span>
+                </li>
+            </ul>
         </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.4s;">
-            <h3 class="font-bold text-gray-800 mb-2">Apa saja metode pembayaran yang tersedia?</h3>
-            <p class="text-gray-700">Kami menerima transfer bank, e-wallet (GCash, PayMaya, OVO, Dana), dan COD (Bayar di Tempat).</p>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6 scroll-animate" data-scroll-animate style="animation-delay: 0.5s;">
-            <h3 class="font-bold text-gray-800 mb-2">Bagaimana cara menghubungi customer service?</h3>
-            <p class="text-gray-700">Anda bisa menghubungi kami melalui telepon (021) 1234-5678 atau email info@tokoberasberkah.com. Tim kami siap membantu 24/7.</p>
-        </div>
-    </div>
-</div>
-
-<!-- CTA Section -->
+    </div><!-- CTA Section -->
 <div class="bg-gradient-to-r from-primary to-primary/80 text-black rounded-lg p-12 text-center scroll-animate" data-scroll-animate>
     <h2 class="text-3xl font-bold mb-4">Siap Memulai Perjalanan Belanja Anda?</h2>
     <p class="text-lg text-black mb-8">Dapatkan beras berkualitas terbaik dengan harga yang kompetitif hari ini juga!</p>

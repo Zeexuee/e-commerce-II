@@ -44,13 +44,6 @@
                             </form>
                         </div>
                     </div>
-                @else
-                    <a href="{{ route('login') }}" class="text-black hover:text-primary font-medium text-sm transition-colors">
-                        Masuk
-                    </a>
-                    <a href="{{ route('register') }}" class="bg-primary text-white px-3 py-1.5 rounded-lg hover:bg-primary/90 font-medium text-sm transition-colors">
-                        Daftar
-                    </a>
                 @endif
             </div>
         </div>

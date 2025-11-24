@@ -31,7 +31,8 @@ Route::get('/order/success/{order}', [OrderController::class, 'success'])->name(
 Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('products', AdminProductController::class);
 });

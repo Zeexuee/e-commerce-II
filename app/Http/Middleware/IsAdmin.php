@@ -21,7 +21,12 @@ class IsAdmin
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu');
         }
 
-        // Jika user sudah login, lanjutkan
+        // Jika user bukan admin, redirect
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->route('home')->with('error', 'Anda tidak memiliki akses ke halaman admin');
+        }
+
+        // Jika user sudah login dan adalah admin, lanjutkan
         return $next($request);
     }
 }

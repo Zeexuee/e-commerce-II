@@ -8,8 +8,8 @@
         <h1 class="text-4xl font-bold text-gray-800 mb-2">Kelola Produk</h1>
         <p class="text-gray-600">Tambah, edit, atau hapus produk</p>
     </div>
-    <a href="{{ route('admin.products.create') }}" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-semibold">
-        Tambah Produk
+    <a href="{{ route('admin.products.create') }}" class="bg-green-600 text-black px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+        + Tambah Produk
     </a>
 </div>
 
@@ -40,9 +40,9 @@
                         <tr class="border-b hover:bg-gray-50">
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 bg-cream rounded-lg flex items-center justify-center">
-                                        @if ($product->image_url)
-                                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded">
+                                    <div class="w-10 h-10 bg-cream rounded-lg flex items-center justify-center overflow-hidden">
+                                        @if ($product->image1)
+                                            <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                                         @else
                                             <span class="text-xl">🌾</span>
                                         @endif

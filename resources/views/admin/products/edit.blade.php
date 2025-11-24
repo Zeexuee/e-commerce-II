@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-white rounded-lg shadow-md p-8 max-w-2xl">
-    <form action="{{ route('admin.products.update', $product) }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.products.update', $product) }}" method="POST" class="space-y-6" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -93,9 +93,58 @@
             <label for="is_active" class="text-sm font-semibold text-gray-800">Produk Aktif</label>
         </div>
 
+        <!-- Image Upload -->
+        <div>
+            <label for="image1" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Produk 1</label>
+            @if ($product->image1)
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Gambar saat ini:</p>
+                    <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="w-32 h-32 object-cover rounded-lg">
+                </div>
+            @endif
+            <input type="file" name="image1" id="image1"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary @error('image1') border-red-500 @enderror">
+            <p class="text-xs text-gray-500 mt-1">Format: JPEG, PNG, JPG, GIF, SVG. Max: 5MB</p>
+            @error('image1')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="image2" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Produk 2 (Opsional)</label>
+            @if ($product->image2)
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Gambar saat ini:</p>
+                    <img src="{{ asset('storage/' . $product->image2) }}" alt="{{ $product->name }}" class="w-32 h-32 object-cover rounded-lg">
+                </div>
+            @endif
+            <input type="file" name="image2" id="image2"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary @error('image2') border-red-500 @enderror">
+            <p class="text-xs text-gray-500 mt-1">Format: JPEG, PNG, JPG, GIF, SVG. Max: 5MB</p>
+            @error('image2')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="image3" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Produk 3 (Opsional)</label>
+            @if ($product->image3)
+                <div class="mb-4">
+                    <p class="text-sm text-gray-600 mb-2">Gambar saat ini:</p>
+                    <img src="{{ asset('storage/' . $product->image3) }}" alt="{{ $product->name }}" class="w-32 h-32 object-cover rounded-lg">
+                </div>
+            @endif
+            <input type="file" name="image3" id="image3"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary @error('image3') border-red-500 @enderror">
+            <p class="text-xs text-gray-500 mt-1">Format: JPEG, PNG, JPG, GIF, SVG. Max: 5MB</p>
+            @error('image3')
+                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+
         <!-- Buttons -->
         <div class="flex gap-4 pt-4">
-            <button type="submit" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-semibold">
+            <button type="submit" class="bg-primary text-black px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors font-semibold">
                 Update Produk
             </button>
             <a href="{{ route('admin.products.index') }}" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors font-semibold">
