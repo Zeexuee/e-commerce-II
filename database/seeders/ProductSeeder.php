@@ -21,6 +21,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-WHT-10KG-001',
                 'category' => 'Premium',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Putih Regular 5kg',
@@ -30,6 +33,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-WHT-5KG-002',
                 'category' => 'Beras Putih',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Merah Organik 5kg',
@@ -39,6 +45,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-RED-5KG-003',
                 'category' => 'Beras Merah',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Putih Super 10kg',
@@ -48,6 +57,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-WHT-10KG-SUPER',
                 'category' => 'Premium',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Merah Regular 5kg',
@@ -57,6 +69,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-RED-5KG-REG',
                 'category' => 'Beras Merah',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Putih Jasmine 10kg',
@@ -66,6 +81,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-JAS-10KG-001',
                 'category' => 'Premium',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Hitam 5kg',
@@ -75,6 +93,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-BLK-5KG-001',
                 'category' => 'Premium',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
             [
                 'name' => 'Beras Putih Serbaguna 25kg',
@@ -84,6 +105,9 @@ class ProductSeeder extends Seeder
                 'sku' => 'BR-WHT-25KG-BULK',
                 'category' => 'Regular',
                 'is_active' => true,
+                'image1' => 'gambar-sementara.png',
+                'image2' => 'gambar-sementara.png',
+                'image3' => 'gambar-sementara.png',
             ],
         ];
 

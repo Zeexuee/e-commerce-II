@@ -1,57 +1,54 @@
-<div class="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 border-t-4 border-accent cursor-pointer transform hover:-translate-y-2">
-    <!-- Product Image -->
-    <div class="w-full h-48 bg-gradient-to-br from-cream to-neutral flex items-center justify-center border-b-2 border-neutral relative overflow-hidden">
+<div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer">
+    <!-- Image Container with Like Button and Discount Badge -->
+    <div class="relative overflow-hidden bg-gray-100 rounded-2xl" style="height: 280px;">
         @if ($product->image1)
-            <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+            <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
         @else
-            <div class="text-center">
-                <div class="text-5xl mb-2">🌾</div>
-                <p class="text-gray-500 text-sm">Tidak ada gambar</p>
+            <div class="w-full h-full flex items-center justify-center">
+                <div class="text-6xl">🌾</div>
             </div>
         @endif
-        
-        <!-- Hover Overlay -->
-        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <span class="text-white font-bold text-lg">Lihat Detail</span>
-        </div>
+
+        <!-- Like Button -->
+        <button class="absolute top-3 right-3 bg-white rounded-full p-2 hover:bg-gray-100 transition-colors">
+            <svg class="w-5 h-5 text-gray-400 hover:text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+            </svg>
+        </button>
+
+        <!-- Discount Badge -->
+        @if ($product->discount)
+            <div class="absolute bottom-3 left-3 bg-yellow-400 text-gray-900 font-bold text-xs px-2 py-1 rounded">
+                -{{ $product->discount }}%
+            </div>
+        @endif
     </div>
 
     <!-- Product Info -->
     <div class="p-4">
         <a href="{{ route('products.show', $product) }}" class="block">
-            <h3 class="font-bold text-gray-800 mb-1 line-clamp-2 group-hover:text-primary transition-colors">{{ $product->name }}</h3>
-            <p class="text-sm text-gray-500 mb-2">{{ $product->sku }}</p>
-            <p class="text-xs text-primary bg-cream inline-block px-2 py-1 rounded mb-3 font-semibold">{{ $product->category }}</p>
+            <!-- Title -->
+            <h3 class="font-bold text-gray-900 line-clamp-1 mb-1 group-hover:text-primary transition-colors">
+                {{ $product->name }}
+            </h3>
 
-            <div class="mb-4">
-                <p class="text-lg font-bold text-primary group-hover:text-primary/80 transition-colors">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-                <p class="text-xs text-gray-500">
-                    @if ($product->stock > 0)
-                        <span class="text-accent font-semibold">{{ $product->stock }} tersedia</span>
-                    @else
-                        <span class="text-red-600 font-semibold">Stok Habis</span>
+            <!-- Category/Description -->
+            <p class="text-xs text-gray-500 mb-3">{{ $product->category }}</p>
+
+            <!-- Price -->
+            <div class="mb-3">
+                <div class="flex items-baseline gap-2">
+                    <span class="text-lg font-bold text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                    @if ($product->original_price)
+                        <span class="text-sm text-gray-400 line-through">Rp {{ number_format($product->original_price, 0, ',', '.') }}</span>
                     @endif
-                </p>
+                </div>
             </div>
         </a>
 
-        <!-- Buy Buttons -->
-        <div class="grid grid-cols-2 gap-2">
-            @if ($product->stock > 0)
-                <a href="#" title="Beli di Shopee" class="group flex items-center justify-center py-2 rounded hover:opacity-80 transition-opacity">
-                    <img src="{{ asset('images/logo-shopee.png') }}" alt="Shopee" class="h-6 w-auto object-contain">
-                </a>
-                <a href="#" title="Beli di Tokopedia" class="group flex items-center justify-center py-2 rounded hover:opacity-80 transition-opacity">
-                    <img src="{{ asset('images/logo-tokopedia.png') }}" alt="Tokopedia" class="h-6 w-auto object-contain">
-                </a>
-            @else
-                <button disabled class="bg-gray-300 text-gray-600 text-xs py-2 rounded font-bold cursor-not-allowed text-center opacity-50">
-                    Habis
-                </button>
-                <button disabled class="bg-gray-300 text-gray-600 text-xs py-2 rounded font-bold cursor-not-allowed text-center opacity-50">
-                    Habis
-                </button>
-            @endif
-        </div>
+        <!-- Add to Cart Button -->
+        <button class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full transition-colors">
+            Tambah Keranjang
+        </button>
     </div>
 </div>

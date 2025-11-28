@@ -18,7 +18,7 @@
 
 @section('content')
 
-<!-- Fitur Unggulan -->
+<!-- Fitur   -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
     <div class="bg-white rounded-lg shadow-md p-8 text-center border-t-4 border-primary hover:shadow-2xl hover:scale-105 hover:bg-primary/5 transition-all duration-300 cursor-pointer scroll-animate" data-scroll-animate>
         <h3 class="text-xl font-bold text-gray-800 mb-2">Kualitas Terjamin</h3>
@@ -179,16 +179,16 @@
 
     <!-- Belanja di Marketplace -->
     <div class="mb-16 bg-gradient-to-r from-red-50 to-green-50 rounded-lg p-12">
-        <div class="text-center mb-10">
+        <div class="text-center mb-10 m-10 p-4">
             <h2 class="text-3xl font-bold text-gray-800 mb-2 scroll-animate" data-scroll-animate>Belanja Sekarang</h2>
             <p class="text-gray-600 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">Pilih marketplace favorit Anda untuk berbelanja produk Toko Beras Berkah</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <!-- Shopee Card -->
-            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate" data-scroll-animate>
+            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate m-4" data-scroll-animate>
                 <div class="mb-6 flex justify-center">
-                    <img src="{{ asset('images/logo-shopee.png') }}" alt="Shopee" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
+                    <img src="{{ asset('images/logo-shopee.png') }}" alt="Shopee" class="h-32 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <p class="text-gray-600 mb-6">Belanja mudah dengan berbagai pilihan pembayaran dan pengiriman cepat</p>
                 <div class="bg-red-500 text-white py-3 rounded-lg font-bold group-hover:bg-red-600 transition-colors">
@@ -197,9 +197,9 @@
             </a>
 
             <!-- Tokopedia Card -->
-            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">
+            <a href="#" class="group bg-white rounded-lg p-8 text-center shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 scroll-animate m-4" data-scroll-animate style="animation-delay: 0.1s;">
                 <div class="mb-6 flex justify-center">
-                    <img src="{{ asset('images/logo-tokopedia.png') }}" alt="Tokopedia" class="h-20 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
+                    <img src="{{ asset('images/logo-tokopedia.png') }}" alt="Tokopedia" class="h-32 w-auto object-contain group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <p class="text-gray-600 mb-6">Belanja terpercaya dengan perlindungan pembeli dan gratis ongkir</p>
                 <div class="bg-green-600 text-white py-3 rounded-lg font-bold group-hover:bg-green-700 transition-colors">

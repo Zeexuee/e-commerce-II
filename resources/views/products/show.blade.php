@@ -3,91 +3,187 @@
 @section('title', $product->name . ' - Toko Beras Berkah')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-    <!-- Product Image -->
-    <div class="scroll-animate" data-scroll-animate>
-        <div class="w-full h-96 bg-gradient-to-br from-cream to-neutral flex items-center justify-center rounded-2xl overflow-hidden">
-            @if ($product->image1)
-                <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
-            @else
-                <div class="text-6xl">🌾</div>
-            @endif
-        </div>
-
-        <!-- Additional Images (if available) -->
-        @if ($product->image2 || $product->image3)
-            <div class="grid grid-cols-2 gap-4 mt-6">
-                @if ($product->image2)
-                    <div class="w-full h-32 bg-gradient-to-br from-cream to-neutral flex items-center justify-center rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="{{ asset('storage/' . $product->image2) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
-                    </div>
-                @endif
-                @if ($product->image3)
-                    <div class="w-full h-32 bg-gradient-to-br from-cream to-neutral flex items-center justify-center rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="{{ asset('storage/' . $product->image3) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
-                    </div>
-                @endif
-            </div>
-        @endif
-    </div>
-
-    <!-- Product Details -->
-    <div class="scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">
-        <div class="mb-6">
-            <p class="text-sm text-primary font-semibold uppercase tracking-wide mb-3">{{ $product->category }}</p>
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">{{ $product->name }}</h1>
-            <p class="text-gray-500">SKU: {{ $product->sku }}</p>
-        </div>
-
-        <!-- Price -->
-        <div class="mb-8 pb-8 border-b border-gray-200">
-            <p class="text-5xl font-bold text-primary">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-            <p class="text-sm text-gray-500 mt-2">per unit</p>
-        </div>
-
-        <!-- Stock -->
-        <div class="mb-8 pb-8 border-b border-gray-200">
-            @if ($product->stock > 0)
-                <p class="text-green-600 font-semibold mb-2">✓ Stok Tersedia</p>
-                <p class="text-gray-600">Jumlah stok: <span class="font-bold text-lg">{{ $product->stock }} unit</span></p>
-            @else
-                <p class="text-red-600 font-semibold">✗ Stok Habis</p>
-            @endif
-        </div>
-
-        <!-- Description -->
-        <div class="mb-8 pb-8 border-b border-gray-200">
-            <h3 class="text-lg font-bold text-gray-800 mb-4">Deskripsi Produk</h3>
-            <p class="text-gray-700 leading-relaxed text-justify">{{ $product->description ?? 'Tidak ada deskripsi tersedia' }}</p>
-        </div>
-
-        <!-- Buy on Marketplace -->
-        @if ($product->stock > 0)
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <a href="#" class="group bg-white border-2 border-red-500 py-4 rounded-lg font-bold hover:bg-red-50 transition-all flex items-center justify-center gap-3">
-                    <img src="{{ asset('images/logo-shopee.png') }}" alt="Shopee" class="h-8 w-auto object-contain">
-                    <span class="text-gray-800">Beli di Shopee</span>
-                </a>
-                <a href="#" class="group bg-white border-2 border-green-600 py-4 rounded-lg font-bold hover:bg-green-50 transition-all flex items-center justify-center gap-3">
-                    <img src="{{ asset('images/logo-tokopedia.png') }}" alt="Tokopedia" class="h-8 w-auto object-contain">
-                    <span class="text-gray-800">Beli di Tokopedia</span>
-                </a>
-            </div>
-        @else
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <button disabled class="bg-gray-300 text-gray-600 py-4 rounded-lg font-bold cursor-not-allowed">
-                    Stok Habis
-                </button>
-                <button disabled class="bg-gray-300 text-gray-600 py-4 rounded-lg font-bold cursor-not-allowed">
-                    Stok Habis
-                </button>
-            </div>
-        @endif
-
-        <!-- Back Link -->
+<div class="py-8">
+    <div class="max-w-6xl mx-auto px-4 mb-6">
         <a href="{{ route('products.index') }}" class="text-primary hover:text-primary/80 font-semibold inline-flex items-center gap-2">
             ← Kembali ke Produk
         </a>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Left: Images (40% width) -->
+            <div class="w-full lg:w-2/5 scroll-animate" data-scroll-animate>
+                <!-- Main Image -->
+                <div class="w-full bg-gray-100 rounded-lg overflow-hidden mb-6 flex items-center justify-center"
+                     style="max-height: 550px;">
+                    <img id="mainImage" 
+                         src="{{ asset('storage/' . $product->image1) }}" 
+                         alt="{{ $product->name }}" 
+                         class="w-full h-full object-cover object-center">
+                </div>
+
+                <!-- Thumbnail Images -->
+                <div class="grid grid-cols-3 gap-3">
+                    <!-- First thumbnail -->
+                    <div class="thumbnail-item group cursor-pointer" data-image="{{ asset('storage/' . $product->image1) }}">
+                        <div class="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden border-2 border-gray-300 group-hover:border-gray-900 transition-all">
+                            @if ($product->image1)
+                                <img src="{{ asset('storage/' . $product->image1) }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-3xl">🌾</div>
+                            @endif
+                        </div>
+                    </div>
+                    
+                    <!-- Second thumbnail -->
+                    <div class="thumbnail-item group cursor-pointer" data-image="{{ asset('storage/' . $product->image2) }}">
+                        <div class="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden border-2 border-gray-300 group-hover:border-gray-900 transition-all">
+                            @if ($product->image2)
+                                <img src="{{ asset('storage/' . $product->image2) }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-3xl">🌾</div>
+                            @endif
+                        </div>
+                    </div>
+                    
+                    <!-- Third thumbnail -->
+                    <div class="thumbnail-item group cursor-pointer" data-image="{{ asset('storage/' . $product->image3) }}">
+                        <div class="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden border-2 border-gray-300 group-hover:border-gray-900 transition-all">
+                            @if ($product->image3)
+                                <img src="{{ asset('storage/' . $product->image3) }}" 
+                                     alt="{{ $product->name }}" 
+                                     class="w-full h-full object-cover">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-3xl">🌾</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.querySelectorAll('.thumbnail-item').forEach(item => {
+                        item.addEventListener('click', function() {
+                            const imageUrl = this.getAttribute('data-image');
+                            document.getElementById('mainImage').src = imageUrl;
+                            
+                            // Update border style for active thumbnail
+                            document.querySelectorAll('.thumbnail-item').forEach(t => {
+                                t.querySelector('div').classList.remove('border-gray-900');
+                                t.querySelector('div').classList.add('border-gray-300');
+                            });
+                            this.querySelector('div').classList.remove('border-gray-300');
+                            this.querySelector('div').classList.add('border-gray-900');
+                        });
+                    });
+                    
+                    // Set first thumbnail as active on page load
+                    document.querySelector('.thumbnail-item div').classList.add('border-gray-900');
+                    document.querySelector('.thumbnail-item div').classList.remove('border-gray-300');
+                </script>
+            </div>
+
+            <!-- Right: Details (60% width) -->
+            <div class="w-full lg:w-3/5 scroll-animate" data-scroll-animate style="animation-delay: 0.1s;">
+                <!-- Category -->
+                <p class="text-sm text-gray-500 font-medium uppercase tracking-wide mb-2">{{ $product->category }}</p>
+                
+                <!-- Title -->
+                <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ $product->name }}</h1>
+
+                <!-- Delivery Info -->
+                <div class="mb-6 pb-6 border-b border-gray-200">
+                    <p class="text-sm text-gray-600 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                        Pengiriman dalam 1-3 hari
+                    </p>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-6 pb-6 border-b border-gray-200">
+                    <div class="flex items-baseline gap-3 mb-4">
+                        <p class="text-3xl font-bold text-gray-900">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                @if ($product->description)
+                    <div class="mb-6 pb-6 border-b border-gray-200">
+                        <p class="text-gray-700 text-sm leading-relaxed">{{ $product->description }}</p>
+                    </div>
+                @endif
+
+                <!-- Marketplace Section -->
+                <p class="text-sm text-gray-600 font-medium text-center mb-3">Dapat barang kami di:</p>
+                
+                <!-- Action Buttons -->
+                <div class="mb-6 grid grid-cols-2 gap-3">
+                    <a href="#" class="border-2 border-gray-900 text-gray-900 font-medium py-3 px-4 rounded-full hover:bg-gray-900 hover:text-white transition-colors text-center">
+                        Shopee
+                    </a>
+                    <a href="#" class="border-2 border-gray-900 text-gray-900 font-medium py-3 px-4 rounded-full hover:bg-gray-900 hover:text-white transition-colors text-center">
+                        Tokopedia
+                    </a>
+                </div>
+
+                <!-- WhatsApp Contact -->
+                <p class="text-sm text-gray-900 font-medium text-center mb-3">Hubungi kami:</p>
+                <button class="w-full bg-white border-2 border-gray-900 text-gray-900 font-medium py-3 rounded-full hover:bg-gray-50 transition-colors text-center mb-6">
+                    WhatsApp
+                </button>
+
+                <!-- Collapsible Sections -->
+                <div class="space-y-0 border border-gray-200 rounded-lg divide-y divide-gray-200">
+                    <!-- Product Details Section -->
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 font-semibold text-gray-900">
+                            <span>DETAIL PRODUK</span>
+                            <svg class="w-5 h-5 transform transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </summary>
+                        <div class="p-4 bg-gray-50 space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">SKU:</span>
+                                <span class="font-semibold text-gray-900">{{ $product->sku }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Kategori:</span>
+                                <span class="font-semibold text-gray-900">{{ $product->category }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Stok:</span>
+                                <span class="font-semibold {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                    {{ $product->stock > 0 ? $product->stock . ' unit' : 'Habis' }}
+                                </span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Additional Info Section -->
+                    <details class="group">
+                        <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 font-semibold text-gray-900">
+                            <span>INFORMASI TAMBAHAN</span>
+                            <svg class="w-5 h-5 transform transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </summary>
+                        <div class="p-4 bg-gray-50 space-y-2 text-sm text-gray-700">
+                            <p>✓ Berkualitas premium dari Toko Beras Berkah</p>
+                            <p>✓ Gratis ongkos kirim untuk pembelian di atas Rp 100.000</p>
+                            <p>✓ Garansi uang kembali 100% jika tidak puas</p>
+                            <p>✓ Tersedia di Shopee dan Tokopedia</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
